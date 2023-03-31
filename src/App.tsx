@@ -9,14 +9,14 @@ export default function App() {
 	const [selectedTags, setSelectedTags] = useState<string[]>([])
 
 	return (
-		<div className='w-full grid justify-items-center gap-8 bg-lightGrayCyanBg'>
+		<div className='w-full min-h-screen grid justify-items-center content-start gap-8 bg-lightGrayCyanBg'>
 			<div className='absolute w-full top-0 bg-darkCyan'>
 				<img className='mx-auto' src={background} alt='bg' />
 			</div>
 			<div
 				className={`${
 					selectedTags.length === 0 ? 'invisible' : 'visible'
-				} flex items-center mt-28 z-10 bg-white shadow-xl w-3/5 min-h-[80px] rounded-lg px-8`}
+				} flex items-center mt-28 z-10 bg-white shadow-xl w-3/5 min-h-[80px] h-20 rounded-lg px-8`}
 			>
 				<div className='flex gap-4 flex-wrap py-4'>
 					{selectedTags.map(selectedTag => (
