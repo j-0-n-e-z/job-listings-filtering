@@ -10,7 +10,7 @@ type VacancyProps = {
 
 export const Vacancy: FC<VacancyProps> = ({ vacancy, setSelectedTags }) => {
 	return (
-		<div className='flex items-center p-10 mb-6 rounded-lg shadow-xl gap-x-6 w-full bg-white'>
+		<div className={`flex items-center p-10 mb-6 rounded-lg shadow-xl gap-x-6 w-full bg-white border-l-darkCyan ${vacancy.featured && 'border-l-4'}`}>
 			<img src={vacancy.logo} alt='logo' />
 			<div className='flex flex-col'>
 				<div className='flex'>
