@@ -10,7 +10,7 @@ export default function App() {
 
 	return (
 		<div className='w-full min-h-screen grid justify-items-center content-start gap-8 bg-lightGrayCyanBg'>
-			<div className='absolute w-full top-0 bg-darkCyan'>
+			<div className='absolute w-screen top-0 bg-darkCyan'>
 				<img className='mx-auto' src={background} alt='bg' />
 			</div>
 			<div
