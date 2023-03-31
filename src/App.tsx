@@ -3,6 +3,7 @@ import './App.css'
 import vacancies from './data/data.json'
 import { Vacancy } from './Vacancy'
 import { getVacancyTags } from './helpers'
+import background from './assets/images/bg-header-desktop.svg'
 
 export default function App() {
 	const [selectedTags, setSelectedTags] = useState<string[]>([])
@@ -10,11 +11,7 @@ export default function App() {
 	return (
 		<div className='w-full grid justify-items-center gap-8 bg-lightGrayCyanBg'>
 			<div className='absolute w-full top-0 bg-darkCyan'>
-				<img
-					className='mx-auto'
-					src='src/assets/images/bg-header-desktop.svg'
-					alt='bg'
-				/>
+				<img className='mx-auto' src={background} alt='bg' />
 			</div>
 			<div
 				className={`${
