@@ -3,7 +3,7 @@ import './App.css'
 import vacancies from './data/data.json'
 import { Vacancy } from './Vacancy'
 import { getVacancyTags } from './helpers'
-import background from './assets/images/bg-header-desktop.svg'
+import background from '../public/images/bg-header-desktop.svg'
 
 export default function App() {
 	const [selectedTags, setSelectedTags] = useState<string[]>([])
