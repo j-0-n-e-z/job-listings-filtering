@@ -1,24 +1,14 @@
 import { FC } from 'react'
+import { VacancyType } from './types'
+import { getVacancyTags } from './helpers'
 
 type VacancyProps = {
-	vacancy: {
-		id: number
-		company: string
-		logo: string
-		new: boolean
-		featured: boolean
-		position: string
-		role: string
-		level: string
-		postedAt: string
-		contract: string
-		location: string
-		languages: string[]
-		tools: string[]
-	}
+	vacancy: VacancyType
+	setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>
+	selectedTags: string[]
 }
 
-export const Vacancy: FC<VacancyProps> = ({ vacancy }) => {
+export const Vacancy: FC<VacancyProps> = ({ vacancy, setSelectedTags }) => {
 	return (
 		<div className='flex items-center p-10 mb-6 rounded-lg shadow-xl gap-x-6 w-full bg-white'>
 			<img src={`src/${vacancy.logo.slice(1)}`} alt='logo' />
@@ -45,16 +35,17 @@ export const Vacancy: FC<VacancyProps> = ({ vacancy }) => {
 				</div>
 			</div>
 			<div className='flex ml-auto gap-5'>
-				<div className='tag'>{vacancy.role}</div>
-				<div className='tag'>{vacancy.level}</div>
-				{vacancy.tools.map(tool => (
-					<div key={tool} className='tag'>
-						{tool}
-					</div>
-				))}
-				{vacancy.languages.map(language => (
-					<div key={language} className='tag'>
-						{language}
+				{getVacancyTags(vacancy).map(tag => (
+					<div
+						key={tag}
+						className='tag'
+						onClick={() =>
+							setSelectedTags(prev =>
+								prev.includes(tag) ? prev : [...prev, tag]
+							)
+						}
+					>
+						{tag}
 					</div>
 				))}
 			</div>
