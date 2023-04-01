@@ -1,7 +1,8 @@
-import React, { FC } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
+import { Xmark } from './Xmark'
 
 type TagsProps = {
-	setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>
+	setSelectedTags: Dispatch<SetStateAction<string[]>>
 	selectedTags: string[]
 }
 
@@ -22,23 +23,12 @@ export const Tags: FC<TagsProps> = ({ selectedTags, setSelectedTags }) => {
 						<button
 							className='text-white bg-darkCyan hover:bg-veryDarkGrayCyan px-[6px] py-[7px] rounded-[0_.375rem_.375rem_0] transition'
 							onClick={() =>
-								setSelectedTags(prev => prev.filter(tag => tag !== selectedTag))
+								setSelectedTags(selectedTags =>
+									selectedTags.filter(tag => tag !== selectedTag)
+								)
 							}
 						>
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								strokeWidth={3}
-								stroke='currentColor'
-								className='w-5 h-5'
-							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									d='M6 18L18 6M6 6l12 12'
-								/>
-							</svg>
+							<Xmark />
 						</button>
 					</div>
 				))}

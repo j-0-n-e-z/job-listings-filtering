@@ -1,10 +1,10 @@
-import { FC } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 import { VacancyType } from '../types'
 import { getVacancyTags } from '../helpers'
 
 type VacancyProps = {
 	vacancy: VacancyType
-	setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>
+	setSelectedTags: Dispatch<SetStateAction<string[]>>
 	selectedTags: string[]
 }
 

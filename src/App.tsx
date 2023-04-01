@@ -3,9 +3,9 @@ import './App.css'
 import vacancies from './data/data.json'
 import { Vacancy } from './components/Vacancy'
 import { getVacancyTags } from './helpers'
-import background from '../public/images/bg-header-desktop.svg'
-import backgroundMobile from '../public/images/bg-header-mobile.svg'
 import { Tags } from './components/Tags'
+import backgroundDesktop from '../public/images/bg-header-desktop.svg'
+import backgroundMobile from '../public/images/bg-header-mobile.svg'
 
 export default function App() {
 	const [selectedTags, setSelectedTags] = useState<string[]>([])
@@ -13,7 +13,11 @@ export default function App() {
 	return (
 		<div className='w-full min-h-screen grid justify-items-center content-start lg:gap-8 gap-16 bg-lightGrayCyanBg'>
 			<div className='absolute w-screen top-0 bg-darkCyan'>
-				<img className='mx-auto lg:block hidden' src={background} alt='bg' />
+				<img
+					className='mx-auto lg:block hidden'
+					src={backgroundDesktop}
+					alt='bg'
+				/>
 				<img
 					className='mx-auto lg:hidden block'
 					src={backgroundMobile}
