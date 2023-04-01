@@ -21,7 +21,7 @@ export default function App() {
 				/>
 			</div>
 			<Tags selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
-			<div className='flex flex-col lg:w-3/5 w-11/12'>
+			<div className='flex flex-col lg:w-4/5 w-11/12'>
 				{vacancies
 					.filter(
 						vacancy =>
