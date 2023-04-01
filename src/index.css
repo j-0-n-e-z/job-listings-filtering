@@ -5,7 +5,7 @@
 @tailwind components;
 
 @layer components {
-  .tag {
-    @apply rounded-md bg-lightGrayCyanFilter font-bold px-2 py-1 text-darkCyan cursor-pointer hover:bg-darkCyan hover:text-white transition duration-75;
-  }
+	.tag {
+		@apply rounded-md lg:text-base text-sm bg-lightGrayCyanFilter font-bold px-2 py-1 text-darkCyan cursor-pointer hover:bg-darkCyan hover:text-white transition duration-75;
+	}
 }
