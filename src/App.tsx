@@ -26,22 +26,21 @@ export default function App() {
 			</div>
 			<Tags selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
 			<div className='flex flex-col lg:w-4/5 w-11/12'>
-				{vacancies
-					.filter(
-						vacancy =>
-							selectedTags.length === 0 ||
+				{(selectedTags.length === 0
+					? vacancies
+					: vacancies.filter(vacancy =>
 							selectedTags.every(selectedTag =>
 								getVacancyTags(vacancy).includes(selectedTag)
 							)
-					)
-					.map(vacancy => (
-						<Vacancy
-							key={vacancy.id}
-							vacancy={vacancy}
-							setSelectedTags={setSelectedTags}
-							selectedTags={selectedTags}
-						/>
-					))}
+					  )
+				).map(vacancy => (
+					<Vacancy
+						key={vacancy.id}
+						vacancy={vacancy}
+						setSelectedTags={setSelectedTags}
+						selectedTags={selectedTags}
+					/>
+				))}
 			</div>
 		</div>
 	)
