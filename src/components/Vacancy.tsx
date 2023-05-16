@@ -59,13 +59,15 @@ export const Vacancy: FC<VacancyProps> = ({
 						</span>
 					)}
 				</div>
-				<a
-					href='#'
-					target='_blank'
-					className='font-bold text-veryDarkGrayCyan lg:text-lg text-sm cursor-pointer hover:text-darkCyan transition'
-				>
-					{vacancy.position}
-				</a>
+				<h3>
+					<a
+						href='#'
+						target='_blank'
+						className='font-bold text-veryDarkGrayCyan lg:text-lg text-sm cursor-pointer hover:text-darkCyan transition'
+					>
+						{vacancy.position}
+					</a>
+				</h3>
 				<div className='flex gap-x-3 text-darkGrayCyan font-medium lg:text-base text-sm'>
 					<span>{vacancy.postedAt}</span>
 					<span>•</span>
