@@ -29,7 +29,7 @@ function App() {
 
 	return (
 		<main className='font-LeagueSpartan min-h-screen grid justify-items-center content-start lg:gap-8 gap-16 bg-lightGrayCyanBg'>
-			<h1 className='fixed scale-0'>Vacancies</h1>
+			<h1 className='fixed scale-0'>Job Listings Filtering</h1>
 			<div className='absolute w-screen top-0 bg-darkCyan'>
 				<img
 					className='mx-auto lg:block hidden'
@@ -44,6 +44,7 @@ function App() {
 			</div>
 			<Filter selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
 			<section className='flex flex-col lg:w-4/5 w-11/12'>
+				<h2 className='fixed scale-0'>Vacancies</h2>
 				{vacancies.map(vacancy => (
 					<Vacancy
 						key={vacancy.id}

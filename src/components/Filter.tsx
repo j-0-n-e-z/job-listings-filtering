@@ -22,6 +22,7 @@ export const Filter: FC<SelectedTagsProps> = ({
 				selectedTags.length === 0 ? 'invisible mt-[70px]' : 'visible mt-28'
 			} flex items-center lg:mt-28 z-10 bg-white shadow-xl lg:w-3/5 w-11/12 min-h-[80px] rounded-lg lg:px-8 px-4`}
 		>
+			<h2 className='fixed scale-0'>Filter</h2>
 			<div className='flex gap-4 flex-wrap py-4'>
 				{selectedTags.map(selectedTag => (
 					<div
