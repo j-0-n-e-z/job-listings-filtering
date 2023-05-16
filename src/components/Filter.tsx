@@ -6,7 +6,7 @@ type SelectedTagsProps = {
 	selectedTags: string[]
 }
 
-export const SelectedTags: FC<SelectedTagsProps> = ({
+export const Filter: FC<SelectedTagsProps> = ({
 	selectedTags,
 	setSelectedTags
 }) => {

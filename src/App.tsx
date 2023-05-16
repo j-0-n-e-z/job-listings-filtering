@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { getVacancyTags } from './helpers'
 import vacanciesData from './data/vacancies.json'
 import { Vacancy } from './components/Vacancy'
-import { SelectedTags } from './components/SelectedTags'
+import { Filter } from './components/Filter'
 
 function App() {
 	const [selectedTags, setSelectedTags] = useState<string[]>([])
@@ -41,10 +41,7 @@ function App() {
 					alt='background'
 				/>
 			</div>
-			<SelectedTags
-				selectedTags={selectedTags}
-				setSelectedTags={setSelectedTags}
-			/>
+			<Filter selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
 			<section className='flex flex-col lg:w-4/5 w-11/12'>
 				{vacancies.map(vacancy => (
 					<Vacancy
