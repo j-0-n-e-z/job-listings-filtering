@@ -1,47 +1,62 @@
 import { useState } from 'react'
-import './App.css'
-import vacancies from './data/data.json'
-import { Vacancy } from './components/Vacancy'
 import { getVacancyTags } from './helpers'
-import { Tags } from './components/Tags'
-import backgroundDesktop from '../public/images/bg-header-desktop.svg'
-import backgroundMobile from '../public/images/bg-header-mobile.svg'
+import vacanciesData from './data/vacancies.json'
+import { Vacancy } from './components/Vacancy'
+import { SelectedTags } from './components/SelectedTags'
 
-export default function App() {
+function App() {
 	const [selectedTags, setSelectedTags] = useState<string[]>([])
 
+	let vacancies = selectedTags.length
+		? vacanciesData.filter(vacancy =>
+				selectedTags.every(selectedTag =>
+					getVacancyTags(vacancy).includes(selectedTag)
+				)
+		  )
+		: vacanciesData
+
+	if (selectedTags.includes('New')) {
+		vacancies = vacancies.filter(vacancy => vacancy.new)
+	}
+
+	if (selectedTags.includes('Featured')) {
+		vacancies = vacancies.filter(vacancy => vacancy.featured)
+	}
+
+	vacancies
+		.sort((a, b) => +b.new - +a.new)
+		.sort((a, b) => +b.featured - +a.featured)
+
 	return (
-		<div className='w-full min-h-screen grid justify-items-center content-start lg:gap-8 gap-16 bg-lightGrayCyanBg'>
+		<main className='font-LeagueSpartan min-h-screen grid justify-items-center content-start lg:gap-8 gap-16 bg-lightGrayCyanBg'>
 			<div className='absolute w-screen top-0 bg-darkCyan'>
 				<img
 					className='mx-auto lg:block hidden'
-					src={backgroundDesktop}
-					alt='bg'
+					src='./images/bg-header-desktop.svg'
+					alt='background'
 				/>
 				<img
 					className='mx-auto lg:hidden block'
-					src={backgroundMobile}
-					alt='bg'
+					src='./images/bg-header-mobile.svg'
+					alt='background'
 				/>
 			</div>
-			<Tags selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
-			<div className='flex flex-col lg:w-4/5 w-11/12'>
-				{(selectedTags.length === 0
-					? vacancies
-					: vacancies.filter(vacancy =>
-							selectedTags.every(selectedTag =>
-								getVacancyTags(vacancy).includes(selectedTag)
-							)
-					  )
-				).map(vacancy => (
+			<SelectedTags
+				selectedTags={selectedTags}
+				setSelectedTags={setSelectedTags}
+			/>
+			<section className='flex flex-col lg:w-4/5 w-11/12'>
+				{vacancies.map(vacancy => (
 					<Vacancy
 						key={vacancy.id}
 						vacancy={vacancy}
-						setSelectedTags={setSelectedTags}
 						selectedTags={selectedTags}
+						setSelectedTags={setSelectedTags}
 					/>
 				))}
-			</div>
-		</div>
+			</section>
+		</main>
 	)
 }
+
+export default App

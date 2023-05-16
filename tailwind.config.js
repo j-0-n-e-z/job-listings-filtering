@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme'
+
 export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
@@ -9,6 +11,9 @@ export default {
 				lightGrayCyanFilter: 'hsl(180, 31%, 95%)',
 				darkGrayCyan: 'hsl(180, 8%, 52%)',
 				veryDarkGrayCyan: 'hsl(180, 14%, 20%)'
+			},
+			fontFamily: {
+				LeagueSpartan: ['League Spartan', ...defaultTheme.fontFamily.sans]
 			}
 		}
 	},

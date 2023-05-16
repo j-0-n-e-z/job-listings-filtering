@@ -1,18 +1,35 @@
-import { Dispatch, FC, SetStateAction } from 'react'
+import { FC } from 'react'
 import { VacancyType } from '../types'
 import { getVacancyTags } from '../helpers'
 
 type VacancyProps = {
 	vacancy: VacancyType
-	setSelectedTags: Dispatch<SetStateAction<string[]>>
+	setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>
 	selectedTags: string[]
 }
 
-export const Vacancy: FC<VacancyProps> = ({ vacancy, setSelectedTags }) => {
+export const Vacancy: FC<VacancyProps> = ({
+	vacancy,
+	selectedTags,
+	setSelectedTags
+}) => {
+	function toggleTag(tag: string) {
+		setSelectedTags(selectedTags => {
+			if (selectedTags.includes(tag)) {
+				return selectedTags.filter(selectedTag => selectedTag !== tag)
+			}
+			return [...selectedTags, tag]
+		})
+	}
+
+	const vacancyTags = getVacancyTags(vacancy).filter(
+		tag => tag !== 'New' && tag !== 'Featured'
+	)
+
 	return (
-		<div
+		<article
 			className={`flex lg:items-center items-start lg:flex-row flex-col lg:p-10 p-6 lg:mb-6 mb-12 rounded-lg shadow-xl lg:gap-6 w-full bg-white border-l-darkCyan ${
-				vacancy.featured && 'lg:border-l-[6px] border-l-[5px] lg:px-8 px-5'
+				vacancy.featured ? 'lg:border-l-[6px] border-l-[5px] lg:px-8 px-5' : ''
 			}`}
 		>
 			<img
@@ -22,44 +39,55 @@ export const Vacancy: FC<VacancyProps> = ({ vacancy, setSelectedTags }) => {
 			/>
 			<div className='flex flex-col gap-3 lg:gap-1'>
 				<div className='flex'>
-					<p className='font-bold text-darkCyan lg:text-base text-sm'>
+					<span className='font-bold text-darkCyan lg:text-base text-sm'>
 						{vacancy.company}
-					</p>
+					</span>
 					{vacancy.new && (
-						<div className='flex items-center font-medium lg:text-sm text-xs text-white px-2 uppercase lg:ml-4 ml-6 rounded-full bg-darkCyan'>
+						<span
+							onClick={() => toggleTag('New')}
+							className='flex items-center font-medium lg:text-sm text-xs text-white px-2 uppercase lg:ml-4 ml-6 pt-1 rounded-full bg-darkCyan cursor-pointer'
+						>
 							new!
-						</div>
+						</span>
 					)}
 					{vacancy.featured && (
-						<div className='flex items-center font-medium lg:text-sm text-xs text-white px-2 uppercase ml-2 rounded-full bg-veryDarkGrayCyan'>
+						<span
+							onClick={() => toggleTag('Featured')}
+							className='flex items-center font-medium lg:text-sm text-xs text-white px-2 uppercase ml-2 pt-1 rounded-full bg-veryDarkGrayCyan cursor-pointer'
+						>
 							featured
-						</div>
+						</span>
 					)}
 				</div>
-				<p className='font-bold text-veryDarkGrayCyan lg:text-lg text-sm cursor-pointer hover:text-darkCyan transition'>
+				<a
+					href='#'
+					target='_blank'
+					className='font-bold text-veryDarkGrayCyan lg:text-lg text-sm cursor-pointer hover:text-darkCyan transition'
+				>
 					{vacancy.position}
-				</p>
-				<div className='flex gap-3 text-darkGrayCyan font-medium lg:text-base text-sm'>
-					<p>{vacancy.postedAt}</p>•<p>{vacancy.contract}</p>•
-					<p>{vacancy.location}</p>
+				</a>
+				<div className='flex gap-x-3 text-darkGrayCyan font-medium lg:text-base text-sm'>
+					<span>{vacancy.postedAt}</span>
+					<span>•</span>
+					<span>{vacancy.contract}</span>
+					<span>•</span>
+					<span>{vacancy.location}</span>
 				</div>
 			</div>
 			<hr className='w-full my-5 lg:hidden block bg-darkGrayCyan' />
-			<div className='flex ml-auto gap-5 flex-wrap'>
-				{getVacancyTags(vacancy).map(tag => (
+			<div className='flex ml-auto gap-5 flex-wrap justify-end'>
+				{vacancyTags.map(vacancyTag => (
 					<div
-						key={tag}
-						className='tag'
-						onClick={() =>
-							setSelectedTags(prev =>
-								prev.includes(tag) ? prev : [...prev, tag]
-							)
-						}
+						key={vacancyTag}
+						className={`tag ${
+							selectedTags.includes(vacancyTag) ? 'tag--selected' : ''
+						}`}
+						onClick={() => toggleTag(vacancyTag)}
 					>
-						{tag}
+						{vacancyTag}
 					</div>
 				))}
 			</div>
-		</div>
+		</article>
 	)
 }
