@@ -29,6 +29,7 @@ function App() {
 
 	return (
 		<main className='font-LeagueSpartan min-h-screen grid justify-items-center content-start lg:gap-8 gap-16 bg-lightGrayCyanBg'>
+			<h1 className='fixed scale-0'>Vacancies</h1>
 			<div className='absolute w-screen top-0 bg-darkCyan'>
 				<img
 					className='mx-auto lg:block hidden'
