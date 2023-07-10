@@ -1,5 +1,5 @@
 # Job Listings Filtering
-This repo is a solution for [this challenge](https://www.frontendmentor.io/challenges/job-listings-with-filtering-ivstIPCt).
+This repo is a solution to [this challenge](https://www.frontendmentor.io/challenges/job-listings-with-filtering-ivstIPCt).
 
 ## Desktop (1440x900)
 ![job-listings-filtering-ecru vercel app_desktop](https://github.com/j-0-n-e-z/job-listings-filtering/assets/46866168/e71fde3b-25b4-468d-8a50-cf5927da7b39)
